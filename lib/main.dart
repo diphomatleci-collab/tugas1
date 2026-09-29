@@ -1,91 +1,128 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  static const String _title = 'Flutter Stateful Clicker Counter';
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _title,
+      debugShowCheckedModeBanner: false,
+      title: 'Gunung Merbabu',
       theme: ThemeData(
-        // useMaterial3: false,
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const GunungMerbabuPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-  // This class is the configuration for the state.
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class GunungMerbabuPage extends StatelessWidget {
+  const GunungMerbabuPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: const Text('Flutter Demo Click Counter'),
+        title: const Text('Pemandangan Gunung Merbabu'),
+        centerTitle: true,
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+
+      body: SingleChildScrollView(
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Gambar Gunung Merbabu
+            Image.asset(
+              'assets/gunung_merbabu.jpg',
+              width: double.infinity,
+              height: 250,
+              fit: BoxFit.cover,
             ),
-            Text(
-              '$_counter',
-              style: const TextStyle(fontSize: 25),
+
+            const Padding(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Gunung Merbabu',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Gunung Merbabu merupakan salah satu gunung '
+                    'yang berada di Jawa Tengah, Indonesia. Gunung ini '
+                    'memiliki pemandangan alam yang indah dengan '
+                    'pegunungan hijau, hamparan awan, dan langit yang '
+                    'cerah. Pemandangan Gunung Merbabu menjadi daya tarik '
+                    'bagi para pendaki dan wisatawan karena keindahan '
+                    'alamnya yang masih asri dan menenangkan.',
+                    style: TextStyle(
+                      fontSize: 17,
+                      height: 1.6,
+                    ),
+                    textAlign: TextAlign.justify,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+
+      // Bagian bawah
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 15,
+        ),
+        child: const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Pojok kiri bawah
+            Row(
+              children: [
+                Icon(
+                  Icons.location_on,
+                  color: Color(0xff0c0000),
+                ),
+                SizedBox(width: 5),
+                Text(
+                  'Jawa Tengah',
+                  style: TextStyle(
+                    color: Color(0xff140101),
+                    fontSize: 15,
+                  ),
+                ),
+              ],
+            ),
+
+            // Pojok kanan bawah
+            Row(
+              children: [
+                Icon(
+                  Icons.phone,
+                  color: Color(0xff0f0000),
+                ),
+                SizedBox(width: 5),
+                Text(
+                  'Kontak',
+                  style: TextStyle(
+                    color: Color(0xff0f0000),
+                    fontSize: 15,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
